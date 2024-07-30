@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register/Become a Member
+    </title>
+</head>
+<body>
+    <h1>This page will load a registration form for the User to fill in their Username, Password, First Name, Last Name, Email, Phone Number, Address, and Zip Code </h1>
+    <form method="POST">
+        {% csrf_token %} <!-- This is a security feature to prevent Cross-Site Request Forgery (CSRF) attacks. -->
+        {{ form.as_p}}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
