@@ -33,11 +33,11 @@ def login_user(request):
         print(f"Email: {email}, Password: {password}")  # Debugging line
         user = authenticate(request, email=email, password=password)
         if user is not None:
-            print("Authentication successful")
+            print("Authentication successful") # Debugging line
             login(request, user)
             return redirect('dashboard')
         else:
-            print("Authentication failed.")
+            print("Authentication failed.") # Debuggin line
             return render(request, 'users/login.html', {'error':'Invalid email or password.'})
     return render(request, 'users/login.html')
 
