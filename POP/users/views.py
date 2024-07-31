@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm
-from django.http import HttpResponse
 
 # Create your views here.
 
@@ -13,9 +12,9 @@ def register_user(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
+            user.user_type = 'user'
             user.save()
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password1')
@@ -31,13 +30,25 @@ def login_user(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
+        print(f"Email: {email}, Password: {password}")  # Debugging line
         user = authenticate(request, email=email, password=password)
         if user is not None:
+            print("Authentication successful")
             login(request, user)
-    else:
-        return render(request, 'users/login.html', {'error':'Invalid email or password.'})
+            return redirect('dashboard')
+        else:
+            print("Authentication failed.")
+            return render(request, 'users/login.html', {'error':'Invalid email or password.'})
     return render(request, 'users/login.html')
 
 def logout_user(request):
-    return redirect('login')
+    return redirect('home')
 
+@login_required
+def dashboard(request):
+    print(f"User Type: {request.user.user_type}")  # Debugging line
+    if request.user.user_type == 'admin':
+        return redirect('admin_dashboard')
+    else:
+        return redirect('user_dashboard')
+    
