@@ -1,12 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User, AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import User, AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 class UserManager(BaseUserManager):
     def create_user(self, email, username, password=None, user_type='user', **extra_fields):
         if not email: 
             raise ValueError('Please fill out the Email Field')
         email = self.normalize_email(email)
-        user = self.model(email=email, username=username, user_type=user_type **extra_fields)
+        user = self.model(email=email, username=username, user_type=user_type, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -21,9 +21,9 @@ class UserManager(BaseUserManager):
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True')
         
-        return self.create_user(email, username, password, **extra_fields)
+        return self.create_user(email, username, password, user_type='admin', **extra_fields)
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     USER_TYPES = [
         ('admin', 'Admin'),
         ('user', 'User')
@@ -40,6 +40,8 @@ class User(AbstractBaseUser):
     user_type = models.CharField(max_length=5, choices=USER_TYPES, default='user')
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
     password = models.CharField(max_length=125)
 
     objects = UserManager() # This tells Django to use UserManager as the default manager for this custom user model.

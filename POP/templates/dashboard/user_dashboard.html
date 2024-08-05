@@ -9,5 +9,9 @@
     {% include 'navbar.html' %}
     <h1>Welcome to the User Dashboard</h1>
     <p>Login successful. This is the user dashboard.</p>
+
+    {% for option in options %}
+        <a href="{{ option.url }}">{{ option.name }}</a>
+    {% endfor %}
 </body>
 </html>
