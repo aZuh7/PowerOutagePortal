@@ -9,7 +9,7 @@ class OutageReport(models.Model):
     description = models.TextField(max_length=500)
     status = models.CharField(max_length=50)
     planned = models.BooleanField(default=False)
-    estimates_restoration_time = models.DateTimeField()
+    estimated_restoration_time = models.DateTimeField()
 
     def __str__(self):
         return f"Outage {self.report_id} by {self.username}"

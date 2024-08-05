@@ -4,5 +4,5 @@ from .models import OutageReport
 class OutageReportForm(forms.ModelForm):
     class Meta: 
         model = OutageReport
-        fields = ['location', 'description', 'status', 'planned', 'estimates_restoration_time']
+        fields = ['location', 'description', 'status', 'planned', 'estimated_restoration_time']
         
