@@ -9,5 +9,11 @@
     {% include 'navbar.html' %}
     <h1>Welcome to the Admin Dashboard</h1>
     <p>Login successful. This is the admin dashboard.</p>
+
+    {% for option in options %}
+        <li>
+            <a href="#">{{ option }}</a>
+        </li>
+    {% endfor %}
 </body>
 </html>

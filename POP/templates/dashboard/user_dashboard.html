@@ -11,7 +11,9 @@
     <p>Login successful. This is the user dashboard.</p>
 
     {% for option in options %}
-        <a href="{{ option.url }}">{{ option.name }}</a>
+        <li>
+            <a href="#">{{ option }}</a>
+        </li>
     {% endfor %}
 </body>
 </html>
