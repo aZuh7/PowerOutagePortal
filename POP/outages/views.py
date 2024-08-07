@@ -17,16 +17,21 @@ def report_outage(request):
             return redirect('outages:outage_reported')
     else:
         form = OutageReportForm()
-    return render(request, 'outages/report_outage.html', {'form': form})
+    return render(request, 'outages/outage_report_form.html', {'form': form})
 
 @login_required
 def update_outage_report(request):
     # Don't forget to incorporate trigger function for notifications
     pass
 
+@login_required
 def get_user_outage_report(request, **extra_kwargs):
     user_reports = OutageReport.objects.filter(user_id=request.user)
     return 
 
+
+@login_required
 def get_all_outage_reports():
     pass
+
+export = report_outage
