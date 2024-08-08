@@ -92,7 +92,7 @@ DATABASES = {
     }
 }
 
-DATABASE_URL = os.getenv('postgres://udkn6n10h7h68m:pd450a111719ea6ac7bca2fd5afc901f8255ae27854caa6d7cc863a9d38f9f51a@cat670aihdrkt1.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d73qpbpuniqfsj')
+DATABASE_URL = os.getenv('DATABASE_URL')  # Ensure DATABASE_URL is correctly retrieved
 if DATABASE_URL:
     DATABASES['default'] = dj_database_url.config(default=DATABASE_URL, conn_max_age=600, ssl_require=True)
 
