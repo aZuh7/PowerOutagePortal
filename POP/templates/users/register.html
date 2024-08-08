@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register/Become a Member
-    </title>
+    <title>Register/Become a Member</title>
+    {% load static %} <!-- Loads the static template tag -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% load crispy_forms_tags %} <!-- Loads the crispy_forms_tags -->
 </head>
 <body>
-    <h1>This page will load a registration form for the User to fill in their Username, Password, First Name, Last Name, Email, Phone Number, Address, and Zip Code </h1>
-    <form method="POST">
+    {% include 'navbar.html' %}
+    <form class="form-container" method="POST">
+        <h1>Sign Up</h1>
+        <p>It's easy.</p>
         {% csrf_token %} <!-- This is a security feature to prevent Cross-Site Request Forgery (CSRF) attacks. -->
-        {{ form.as_p }}
-        <button type="submit">Register</button>
+        <div class="form-group">
+            {{ form|crispy }}
+        </div>
+        <button class="submitButton" type="submit">Register</button>
     </form>
 </body>
 </html>

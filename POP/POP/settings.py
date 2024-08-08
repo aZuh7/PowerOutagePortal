@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "outages",
     "dashboard",
     "notifications",
+    "crispy_forms",
+    "crispy_bootstrap4"
 ]
 
 MIDDLEWARE = [
@@ -123,6 +125,8 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

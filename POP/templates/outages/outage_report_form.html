@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outage Report</title>
+    {% load static %} <!-- Loads the static template tag -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% load crispy_forms_tags %} <!-- Loads the crispy_forms_tags -->
 </head>
 <body>
-    <h1>This page will load a form for the User or Admin to fill out and submit/report an outage.</h1>
+    {% include 'navbar.html' %}
+    <div class="form-container">
+        <h1>Report an Outage</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="submitButton">Submit</button>
+        </form>
+    </div>
 
-    {{ form.as_p }}
+    <button class="submitButton" type="submit">Submit</button>
 </body>
 </html>
