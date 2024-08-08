@@ -1,0 +1,42 @@
+/* Basic CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style for the navbar container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+/* Style for the site title */
+.navbar h1 {
+    color: #fff;
+    font-size: 24px;
+}
+
+/* Style for the links */
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+/* Hover effect for the links */
+.navbar a:hover {
+    color: #ddd;
+}
+
+/* Style for the horizontal rule */
+hr {
+    margin-top: 10px;
+    border: 0;
+    height: 1px;
+    background: #ccc;
+}

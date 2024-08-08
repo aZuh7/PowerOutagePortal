@@ -10,10 +10,20 @@
     <h1>Welcome to the User Dashboard</h1>
     <p>Login successful. This is the user dashboard.</p>
 
-    {% for option in options %}
-        <li>
-            <a href="#">{{ option }}</a>
-        </li>
-    {% endfor %}
+        <li><a href="{% url 'report_outage' %}">Report an Outage</a></li>
+        <li><a href="#">View my Outage Reports</a></li>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Planned</th>
+                    <th>Estimated Restoration Time</th>
+                </tr>
+            </thead>
+        </table>
 </body>
 </html>

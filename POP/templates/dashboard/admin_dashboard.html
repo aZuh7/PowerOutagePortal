@@ -10,10 +10,27 @@
     <h1>Welcome to the Admin Dashboard</h1>
     <p>Login successful. This is the admin dashboard.</p>
 
-    {% for option in options %}
-        <li>
-            <a href="">{{ option }}</a>
-        </li>
-    {% endfor %}
+        <li><a href="{% url 'report_outage' %}">Report an Outage</a></li>
+        <li><a href="#">View All Outage Reports</a></li>
+        <li><a href="#">Generate Reports</a></li>
+        <li><a href="#">Calculate Outages by Zip Code</a></li>
+        <li><a href=""></a></li>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Planned</th>
+                    <th>Estimated Restoration Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+
 </body>
 </html>

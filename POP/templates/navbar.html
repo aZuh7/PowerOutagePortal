@@ -1,9 +1,25 @@
-<a href="/">
-    <h1>Power Outage Portal</h1>
-</a>
-
-<a href="{% url 'login' %}">Login</a>
-
-<a href="{% url 'register' %}">Register</a>
-
-<hr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Power Outage Portal</title>
+    {% load static %} <!-- Loads the static template tag -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">
+            <h1>Power Outage Portal</h1>
+        </a>
+        <div>
+            {% if user.is_authenticated %} <!-- Checks if the user is authenticated -->
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %} <!-- If the user is not authenticated, displah Login & Register -->
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+    <hr>
+</body>
+</html>
