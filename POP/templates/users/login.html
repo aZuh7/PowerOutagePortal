@@ -10,9 +10,9 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <h1>This will be the login page with fields for the User or Admin to Login.</h1>
     
     <form class="form-container" method="POST">
+        <h1>Login</h1>
         {% csrf_token %}
         <div class="form-group">
             <label for="email">Email:</label>
