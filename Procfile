@@ -1,1 +1,1 @@
-web: gunicorn POP.wsgi
+web: gunicorn POP.wsgi --log-file -
