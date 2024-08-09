@@ -13,6 +13,16 @@
         <li><a href="{% url 'report_outage' %}">Report an Outage</a></li>
         <li><a href="#">View my Outage Reports</a></li>
 
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         <table>
             <thead>
                 <tr>

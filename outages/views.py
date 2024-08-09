@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import OutageReport
 from .forms import OutageReportForm
-from notifications.models import TwilioSMS, DjangoSMTP
+from users.views import dashboard
+
 
 
 # Create your views here.
@@ -14,7 +16,8 @@ def report_outage(request):
             report = form.save(commit=False)
             report.user_id = request.user
             report.save()
-            return redirect('outages:outage_reported')
+            return render(request, 'outages/outage_confirmation.html')
+        
     else:
         form = OutageReportForm()
     return render(request, 'outages/outage_report_form.html', {'form': form})

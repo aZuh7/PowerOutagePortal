@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Outage Report Submitted</title>
+    {% load static %} <!-- Loads the static template tag -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="confirmation-message">
+        <h1>Outage Report Submitted Successfully!</h1>
+        <p>Your outage report has been submitted successfully.</p>
+        <a href="{% url 'dashboard' %}" class="btn">Return to Dashboard</a>
+    </div>
+</body>
+</html>

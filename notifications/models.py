@@ -1,10 +1,9 @@
 from django.db import models
+import vonage 
 
 # Create your models here.
-class TwilioSMS(models.Model):
-    # TwilioSMS model will store all SMS
+class VonageAPI(models.Model):
     pass
 
-class DjangoSMTP(models.Model):
-    # DjangoSMTP model will store all emails
+class SendGrid(models.Model):
     pass
