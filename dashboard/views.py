@@ -7,7 +7,6 @@ def user_dashboard(request):
     view_reports = request.GET.get('view_reports') == 'true'
     user_reports = OutageReport.objects.filter(user_id=request.user) if view_reports else None
 
-
     return render(request, 'dashboard/user_dashboard.html', {
         "view_reports": view_reports,
         "reports": user_reports})
