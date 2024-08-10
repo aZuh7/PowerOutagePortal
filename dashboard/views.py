@@ -9,6 +9,13 @@ def user_dashboard(request):
         "View my Outage Reports"
     ]
     return render(request, 'dashboard/user_dashboard.html', {"options": options})
+    view_reports = request.GET.get('view_reports') == 'true'
+    user_reports = OutageReport.objects.filter(user_id=request.user) if view_reports else None
+
+
+    return render(request, 'dashboard/user_dashboard.html', {
+        "view_reports": view_reports,
+        "reports": user_reports})
 
 @login_required
 def admin_dashboard(request):
