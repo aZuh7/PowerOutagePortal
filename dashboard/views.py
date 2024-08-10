@@ -4,11 +4,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
 def user_dashboard(request):
-    options = [
-        "Report an Outage",
-        "View my Outage Reports"
-    ]
-    return render(request, 'dashboard/user_dashboard.html', {"options": options})
     view_reports = request.GET.get('view_reports') == 'true'
     user_reports = OutageReport.objects.filter(user_id=request.user) if view_reports else None
 

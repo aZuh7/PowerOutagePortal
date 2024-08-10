@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegistrationForm
 from .forms import UserRegistrationForm, LoginForm
 
 # Create your views here.
@@ -33,18 +32,6 @@ def register_user(request):
 
 def login_user(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        print(f"Email: {email}, Password: {password}")  # Debugging line
-        user = authenticate(request, email=email, password=password)
-        if user is not None:
-            print("Authentication successful") # Debugging line
-            login(request, user)
-            return redirect('dashboard')
-        else:
-            print("Authentication failed.") # Debuggin line
-            return render(request, 'users/login.html', {'error':'Invalid email or password.'})
-    return render(request, 'users/login.html')
         form = LoginForm(request.POST)
         if form.is_valid():
             email = request.POST.get('email')
