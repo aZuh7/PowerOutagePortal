@@ -1,6 +1,12 @@
 from django.db import models
 from users.models import User
 
+STATUS_CHOICES = (
+    ('reported', 'Reported'),
+    ('in_progress', 'In Progress'),
+    ('resolved', 'Resolved'),
+)
+
 class OutageReport(models.Model):
     report_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
