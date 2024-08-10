@@ -2,7 +2,10 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from outages.models import OutageReport
 
-# Create your views here.
+'''
+This is a view function that renders the user dashboard html template.
+Here we also predefine variables to be returned if the user wants to view their previously submitted reports.
+'''
 @login_required
 def user_dashboard(request):
     view_reports = request.GET.get('view_reports') == 'true'
@@ -12,6 +15,9 @@ def user_dashboard(request):
         "view_reports": view_reports,
         "reports": user_reports})
 
+'''
+This view function renders the admin dashboard html template.
+'''
 @login_required
 def admin_dashboard(request):
     options = [

@@ -4,9 +4,19 @@ from django.contrib.auth.admin import UserAdmin
 from .models import User
 from outages.models import OutageReport
 
+'''
+The OutageReportInline class is used to display the OutageReport model as an inline
+in the User model admin page. This makes it easier for administrators and developers
+to view OutageReports associated with a particular user.
+'''
 class OutageReportInline(admin.TabularInline):
     model = OutageReport
     extra = 0
+
+'''
+The CustomUserAdmin class is used to customize the Django admin panel view for administrators
+and developers to have a graphical representation of the backend database by registering the User model to the admin site.
+'''
 class CustomUserAdmin(UserAdmin):
     model = User
     inlines = (OutageReportInline,)
@@ -27,6 +37,11 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('user_id',)
 
 admin.site.register(User, CustomUserAdmin)
+
+'''
+The CustomOutageAdmin class is used to customize the Django admin panel view for administrators
+and developers to view Outage Report objects stored on the database with a graphical representation by registering the OutageReport model to the admin site.
+'''
 
 class CustomOutageAdmin(admin.ModelAdmin):
     model = OutageReport

@@ -8,11 +8,17 @@ from .forms import UserRegistrationForm, LoginForm
 def home(request):
     return render(request, "home.html")
 
+'''
+The following function is a view function that renders the registration form.
+Once the user fills out the form and clicks the submit button, the function
+receives the POST request, validates the form data, saves the data to the
+database and logs the user in.
+'''
 def register_user(request):
     # There are only two types of HTTP requests: GET and POST.
     # GET requests are used to retrieve information from the server.
     # POST requests are used to send data to the server.
-    # With that being said, here we are checking if the request is a POST request.
+    # Here we are checking if the request is a POST request.
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -30,6 +36,13 @@ def register_user(request):
         form = UserRegistrationForm()
     return render(request, 'users/register.html', {'form': form})
 
+
+'''
+The following function is a view function that renders the login form.
+Once the user fills out the form and clicks the submit button, the function
+receives the POST request, validates the form data, authenticates the user
+and logs the user in.
+'''
 def login_user(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -49,10 +62,18 @@ def login_user(request):
         form = LoginForm()
     return render(request, 'users/login.html', {'form': form})
 
+'''
+This view function logs out the current user.
+'''
+
 def logout_user(request):
     logout(request)
     return redirect('home')
 
+'''
+The following function is a view function that renders either the admin dashboard
+or the user dashboard based on the user type.
+'''
 @login_required
 def dashboard(request):
     if request.user.user_type == 'admin':

@@ -1,6 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User, AbstractBaseUser, BaseUserManager, PermissionsMixin
 
+
+'''
+The UserManager class is used to create a custom user model as opposed to using
+Dango's built-in User model. 
+
+The class has two methods: create_user and
+create_superuser. 
+
+The create_user method is used to create a new user. 
+The create_superuser method is used to create a superuser.
+'''
 class UserManager(BaseUserManager): # This class is used to create a custom user model as opposed to using Dango's built-in User model.
     def create_user(self, email, username, password=None, user_type='user', **extra_fields): # This method is used to create a new user.
         if not email: # This line checks if the email field is empty. If it is, then it tells the browser to raise a ValueError.
@@ -23,6 +34,27 @@ class UserManager(BaseUserManager): # This class is used to create a custom user
         
         return self.create_user(email, username, password, user_type='admin', **extra_fields) # This line creates a new superuser object.
 
+'''
+The User class is a custom user model that inherits from Django's built-in
+AbstractBaseUser and PermissionsMixin classes.
+
+The class has the following fields:
+- user_id: an AutoField that serves as the primary key for the model
+- username: a CharField that stores the username of the user
+- first_name: a CharField that stores the first name of the user
+- last_name: a CharField that stores the last name of the user
+- email: an EmailField that stores the email of the user
+- phone: a CharField that stores the phone number of the user
+- address: a CharField that stores the address of the user
+- zip: a CharField that stores the zip code of the user
+- user_type: a CharField that stores the type of user (admin or user)
+- is_admin: a BooleanField that indicates whether the user is an admin or not
+- is_active: a BooleanField that indicates whether the user is active or not
+- is_staff: a BooleanField that indicates whether the user is staff or not
+- is_superuser: a BooleanField that indicates whether the user is a superuser or not
+- password: a CharField that stores the password of the user
+- objects: a UserManager object that is used as the default manager for the model
+'''
 class User(AbstractBaseUser, PermissionsMixin): # This is our custom User Model. It inherits from AbstractBaseUser and PermissionsMixin, which are built-in Django classes.
     USER_TYPES = [
         ('admin', 'Admin'),

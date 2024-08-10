@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import OutageReport
 from .forms import OutageReportForm
-from users.views import dashboard
 
-
-
-# Create your views here.
+'''
+The following function is a view function that loads the outage report form. 
+Once the user or admin fills out the form and clicks the submit button, the 
+function receives the POST request, validates the form data, saves the
+data to the database and renders an outage confirmation page.
+'''
 @login_required
-def report_outage(request):
+def report_outage(request): 
     if request.method == 'POST':
         form = OutageReportForm(request.POST)
         if form.is_valid():
@@ -22,19 +23,27 @@ def report_outage(request):
         form = OutageReportForm()
     return render(request, 'outages/outage_report_form.html', {'form': form})
 
+'''
+The following function is a view function that updates an outage report.
+'''
 @login_required
 def update_outage_report(request):
     # Don't forget to incorporate trigger function for notifications
     pass
+
+'''
+The following function is a view function that deletes an outage report.
+'''
 
 @login_required
 def get_user_outage_report(request, **extra_kwargs):
     user_reports = OutageReport.objects.filter(user_id=request.user)
     return 
 
+'''
+The following function is a view function that retrieves all outage reports.
+'''
 
 @login_required
 def get_all_outage_reports():
     pass
-
-export = report_outage
