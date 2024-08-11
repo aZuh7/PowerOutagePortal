@@ -8,5 +8,29 @@
 <body>
     {% include 'navbar.html' %}
     <h1>My Outage Reports</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Planned</th>
+                <th>Estimated Restoration Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in user_reports %}
+            <tr>
+                <td>{{ report.report_id }}</td>
+                <td>{{ report.location }}</td>
+                <td>{{ report.description }}</td>
+                <td>{{ report.get_status_display }}</td>
+                <td>{{ report.planned|yesno:"Yes,No" }}</td>
+                <td>{{ report.estimated_restoration_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
