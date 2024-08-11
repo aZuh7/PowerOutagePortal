@@ -1,5 +1,5 @@
 from django import forms
-from .models import OutageReport
+from .models import OutageReport, STATUS_CHOICES
 
 class OutageReportForm(forms.ModelForm):
     class Meta: 
@@ -14,9 +14,9 @@ class OutageReportForm(forms.ModelForm):
         if is_admin and not is_update:
             self.fields['status'] = forms.ChoiceField(choices=OutageReport.STATUS_CHOICES, disabled=not is_admin)
 
-class FilterOutageReport(forms.ModelForm):
+class FilterOutageReport(forms.Form):
     report_id = forms.IntegerField(required=False, label='Report ID')
-    status = forms.ChoiceField(choices=[('', 'All')] + list(OutageReport.STATUS_CHOICES), required=False, label='Status')
+    status = forms.ChoiceField(choices=[('', 'All')] + list(STATUS_CHOICES), required=False, label='Status')
     planned = forms.ChoiceField(choices=[('', 'All'), ('True', 'Yes'), ('False', 'No')], required=False, label='Planned')
 
     def __init__(self, *args, **kwargs):

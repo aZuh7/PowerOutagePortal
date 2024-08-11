@@ -58,8 +58,8 @@ The following function is a view function that retrieves all outage reports.
 
 @login_required
 def get_all_outage_reports(request):
-    if request.user.user.type == 'admin':
-        form = FilterOutageReport(request.GET or None)
+    if request.user.user_type == 'admin':
+        form = FilterOutageReport(request.GET)
         reports = OutageReport.objects.all()
 
         if form.is_valid():
@@ -72,4 +72,4 @@ def get_all_outage_reports(request):
             planned = form.cleaned_data.get('planned')
             if planned:
                 reports = reports.filter(planned=(planned == 'True'))
-    return render(request, 'outages/admin_dashboard.html', {'reports': reports, 'form': form})
+    return render(request, 'dashboard/admin_dashboard.html', {'reports': reports, 'form': form})
