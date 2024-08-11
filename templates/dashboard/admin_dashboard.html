@@ -57,7 +57,16 @@
                 </tr>
             </thead>
             <tbody>
-                
+                {% for report in reports %}
+                <tr>
+                    <td><a href="{% url 'update_outage_report' report.report_id %}">{{ report.report_id }}</a></td>
+                    <td>{{ report.location }}</td>
+                    <td>{{ report.description }}</td>
+                    <td>{{ report.get_status_display }}</td>
+                    <td>{{ report.planned|yesno:"Yes,No" }}</td>
+                    <td>{{ report.estimated_restoration_time }}</td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
 
