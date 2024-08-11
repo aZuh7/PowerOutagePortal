@@ -25,6 +25,25 @@
                 {% endfor %}
             </div>
         {% endif %}
+        
+        <div class="forms">
+            <form method='GET'>
+            <fieldset>
+            
+            {{ form.report_id.label_tag}}
+            {{ form.report_id }}
+            
+            {{ form.planned.label_tag}}
+            {{ form.planned }}
+            
+            {{ form.status.label_tag}}
+            {{ form.status }}
+            <button type="submit">Submit</button>
+            
+            </fieldset>
+            
+            </form>
+        </div>
 
         <table>
             <thead>

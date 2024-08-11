@@ -31,6 +31,7 @@ def update_outage_report(request, report_id):
     # Don't forget to incorporate trigger function for notifications
     try:
         report = OutageReport.objects.get(pk = report_id)
+        is_admin = request.user.user_type == 'admin'
     except OutageReport.DoesNotExist:
         pass
     if request.method == 'POST':
@@ -39,8 +40,8 @@ def update_outage_report(request, report_id):
             form.save()
             # notify_users(report)
     else:
-        form = OutageReport(instance = report)
-    return render(request, 'outages/update_outage_report.html', {'form': form})
+        form = OutageReportForm(instance = report, is_admin = is_admin, is_update=True)
+    return render(request, 'outages/outage_report_form.html', {'form': form})
 
 
 '''
