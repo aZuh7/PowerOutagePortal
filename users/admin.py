@@ -45,7 +45,7 @@ and developers to view Outage Report objects stored on the database with a graph
 
 class CustomOutageAdmin(admin.ModelAdmin):
     model = OutageReport
-    list_display = ('report_id', 'user_id', 'report_date', 'location', 'description', 'planned', 'estimated_restoration_time')
+    list_display = ('report_id', 'user_id', 'report_date', 'location', 'zip_code', 'description', 'planned', 'estimated_restoration_time')
     list_filter = ('report_id', 'user_id', 'report_date', 'planned')
 
     search_fields = ('report_id', 'user_id', 'report_date')
