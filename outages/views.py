@@ -62,6 +62,7 @@ def get_all_outage_reports(request):
     if request.user.user_type == 'admin':
         form = FilterOutageReport(request.GET)
         reports = OutageReport.objects.all()
+        total_outages_by_zip = 0
 
         if form.is_valid():
             report_id = form.cleaned_data.get('report_id')
@@ -73,4 +74,8 @@ def get_all_outage_reports(request):
             planned = form.cleaned_data.get('planned')
             if planned:
                 reports = reports.filter(planned=(planned == 'True'))
-    return render(request, 'dashboard/admin_dashboard.html', {'reports': reports, 'form': form})
+            zip_code = form.cleaned_data.get('zip_code')
+            if zip_code:
+                reports = reports.filter(zip=zip_code, zip_code__isnull=True)
+                # total_outages_by_zip = form.calculate_total_outages_by_zip_()
+    return render(request, 'dashboard/admin_dashboard.html', {'reports': reports, 'form': form, 'total_outages_by_zip': total_outages_by_zip})

@@ -68,7 +68,7 @@ class User(AbstractBaseUser, PermissionsMixin): # This is our custom User Model.
     email = models.EmailField(max_length=25, unique=True)
     phone = models.CharField(max_length=25)
     address = models.CharField(max_length=25)
-    zip = models.CharField(max_length=5)
+    zip_code = models.CharField(max_length=5)
     user_type = models.CharField(max_length=5, choices=USER_TYPES, default='user')
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -79,7 +79,7 @@ class User(AbstractBaseUser, PermissionsMixin): # This is our custom User Model.
     objects = UserManager() # This tells Django to use UserManager as the default manager for this custom user model.
 
     USERNAME_FIELD = 'email' # This line tells Django to use the email field as the username field.
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'phone', 'address', 'zip'] # This line tells Django to require these fields when creating a new user.
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'phone', 'address', 'zip_code'] # This line tells Django to require these fields when creating a new user.
 
     def __str__(self):
         return self.username

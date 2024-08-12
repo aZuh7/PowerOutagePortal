@@ -14,6 +14,7 @@
             <li><a href="{% url 'get_all_outage_reports' %}">View All Outage Reports</a></li>
             <li><a href="#">Generate Reports</a></li>
             <li><a href="#">Calculate Outages by Zip Code</a></li>
+            <li><a href="{% url 'get_all_outage_reports' %}?zip_code={{form.cleaned_data.zip_code}}">Calculate Outages by Zip Code</a></li>
             <li><a href=""></a></li>
         </ul>
         {% if messages %}
@@ -38,12 +39,20 @@
             
             {{ form.status.label_tag}}
             {{ form.status }}
+
+            {{ form.zip_code.label_tag}}
+            {{ form.zip_code }}
+            
             <button type="submit">Submit</button>
             
             </fieldset>
             
             </form>
         </div>
+
+        <!-- {% if total_outages_by_zip %}
+            <h2>Total Outages for Zip Code {{ form.cleaned_data.zip_code }}: {{ total_outages_by_zip }}</h2>
+        {% endif %} -->
 
         <table>
             <thead>
@@ -54,10 +63,28 @@
                     <th>Status</th>
                     <th>Planned</th>
                     <th>Estimated Restoration Time</th>
+                    <th>Zip Code</th>
                 </tr>
             </thead>
             <tbody>
-                
+                {% for report in reports %}
+                <tr>
+<<<<<<< Updated upstream
+                    <td><a href="{% url 'update_outage_report' report.report_id %}">{{ report.report_id }}</a></td>
+=======
+                    <td>{{ report.report_id }}</td>
+>>>>>>> Stashed changes
+                    <td>{{ report.location }}</td>
+                    <td>{{ report.description }}</td>
+                    <td>{{ report.get_status_display }}</td>
+                    <td>{{ report.planned|yesno:"Yes,No" }}</td>
+                    <td>{{ report.estimated_restoration_time }}</td>
+<<<<<<< Updated upstream
+=======
+                    <td>{{ report.zip }}</td>
+>>>>>>> Stashed changes
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
 
