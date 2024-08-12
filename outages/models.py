@@ -30,6 +30,7 @@ class OutageReport(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     report_date = models.DateTimeField(auto_now_add=True)
     location = models.CharField(max_length=50)
+    zip_code = models.CharField(max_length=5, default="")
     description = models.TextField(max_length=500)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='reported')
     planned = models.BooleanField(default=False)
